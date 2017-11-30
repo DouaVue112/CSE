@@ -1,3 +1,4 @@
+import random # this should be on line 1
 # # This is working
 # print("hello world")
 #
@@ -53,7 +54,7 @@ def print_age(name,age):
     print("next year, they will be %d" % age)
 
 
-print_age("john", 15
+print_age("john", 15)
 
 def f(x):
     return x**3 + 4 * x**2 + 7 * x - 4
@@ -68,9 +69,37 @@ print(f(5))
 def grade_calc(percentage):
     if percentage >= 90:
         return "A"
-elif percentage < 90 and percentage >=80 :
+    elif percentage < 90 and percentage>= 90 :
         return "B"
-elif percentage >= 70 :
+    elif percentage >=90 :
         return "C"
-elif percentage >= 60 :
-         return "D"
+
+'''Write a Function called "happy_bday"
+that "sings" (prints) Happy birthday
+
+It must take one parameter called "name" 
+'''
+
+def happy_bday(name):
+    print("happy birthday to you" + ",")
+    print("happy birthday to you" + ",")
+    print("happy birthday to " + name + ",")
+    print("happy birthday to you" + ".")
+
+happy_bday("john")
+
+
+# loops
+
+for num in range(10):
+    print(num + 1)
+
+# DO NOT RUN!!!!!!!
+a = 1
+while a <= 10:
+    print (a)
+    a += 1
+
+# random Number
+
+print (random.randint(0,100))
