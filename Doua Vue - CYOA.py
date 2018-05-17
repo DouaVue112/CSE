@@ -77,7 +77,7 @@ class RippedBlackPant(Clothing):
         super(RippedBlackPant, self).__init__('Ripped_Black_Pant', 'A Pants', 'Black')
 
     def pantarmor(self):
-        print("Can help you from getting bit from snake or any type of anime but not really ")
+        print("Can help you from getting bit from snake or any type of animal but not really ")
 
 
 class Vans(Clothing):
@@ -105,7 +105,7 @@ class GoldenWatch(Time):
 class Consumable(Item):
     def __init__(self, name, description):
         super(Consumable, self).__init__(name, description)
-        self.healing = 20
+        self.healing = 10
 
     def healing(self):
         print("It's healing you by %s" % self.healing)
@@ -144,11 +144,12 @@ class Character(object):
             print("You can't pick up that item")
 
 
-Guy = Character("Name: Jimmy", "Health: 0%", "Money", "Clothing: Style Clothing", "Description: You are smart "
-                                                                                  "and love to "
-                                                                                  "play video games and"
-                                                                                  " sport but most of all, "
-                                                                                  "you get hungry a lot")
+Guy = Character("Name: Jimmy", "Health: 20%", [Cap], "Clothing: Style Clothing", "Description: You are smart "
+                                                                                 "and love to "
+                                                                                 "play video games and"
+                                                                                 " sport but most of all, "
+                                                                                 "you get hungry a lot")
+
 print(Guy.name)
 print(Guy.health)
 print(Guy.clothes)
@@ -159,10 +160,19 @@ bankcard = BankCard()
 cap = Cap()
 supremejacket = SupremeJacket()
 rippedblackpant = RippedBlackPant()
-vans = Vans('Shoes')
+vans = Vans('vans')
 goldenwatch = GoldenWatch()
 food = Food()
 water = Water()
+
+
+class Balance(object):
+    def __init__(self, money):
+        self.Money = 20
+
+
+Dude = Balance("Balance: 20")
+print(Dude.Money)
 
 
 class Room(object):
@@ -180,59 +190,82 @@ class Room(object):
         current_node = globals()[getattr(self, direction)]
 
 
-# Initialize Rooms
-House = Room("House", "There is 20 dollars on the table. You must eat about 8 type of food to get full. "
-                      "A door lead east.", None, None, 'Down_Town', None,
-             ['Bank Card', 'Cap', 'Vans', 'Ripped Black Pant'])
+House = Room("House", "There is 20 dollars and a bank card on the table. Also a ripped black pants "
+                      "and a pair of vans in your dressing room."
+                      " You must eat about 8 types of food from some Fast Food stores"
+                      " to get full. "
+                      "A door leads to east.", None, None, 'Down_Town', None,
+             [BankCard, Cap, Vans, RippedBlackPant])
 Down_Town = Room("Down Town", "Now you are in down town and you found a spirit knife. A street leads north to "
                               "the food places.", 'Pizza_Huts',
-                 None, None, None, 'Spirit Knife')
-Pizza_Huts = Room("Pizza Huts", "You have wasted 5 dollars on the largest pizza but your still hungry. "
-                                "The Pizza Hut gave you a Supreme Jacket because you ate "
-                                "the biggest pizza that they had."
-                                "There is a taco bell North.", 'Taco_Bell', None, None, None, 'Supreme Jacket')
-Taco_Bell = Room("Taco Bell", "You again waste 5 dollars. You have ate two type of food. Go west for burger king.",
+                 None, None, None, SpiritKnife)
+Pizza_Huts = Room("Pizza Huts", "Your first stop is at Pizza Hut. You have wasted 5 dollars on the largest pizza but "
+                                "you're still very hungry. "
+                                "The Pizza H"
+                                "ut gave you a Supreme Jacket because you ate "
+                                "the biggest pizza that they had. Go to the next stop."
+                                "", 'Taco_Bell', None, None, None, SupremeJacket)
+Taco_Bell = Room("Taco Bell", "You again wasted 5 dollars at Taco Bell. You have ate two types of food. "
+                              "Go west to eat more.",
                  None, None, None, 'Burger_Kings', None)
 Burger_Kings = Room("Burger Kings", "You now ate a burger and the burger was 5 dollars."
-                                    "You ate 3 types of food. Go west.", None, None, None, 'Subway', None)
-Subway = Room("Subway", "You now ate a sandwich and was looking for more money. You search and search but your pockets "
-                        "didn't have many money. "
-                        "You then dropped the spirit knife but you still got your bank card to go get more money. "
+                                    " You now ate 3 types of food.", None, None, None, 'Subway', None)
+Subway = Room("Subway", "You then ate a sandwich and you were looking "
+                        "for more money. You searched and searched but your pockets "
+                        "didn't have any money at all. "
+                        "You also dropped the spirit knife but you remember you still got your bank card "
+                        "to go get more money. "
                         "There is a bank south and west.",
               None, 'Bank_South', None, 'Bank_West', None)
-Bank_West = Room("Bank West", "You are at bank west. You took out 40 dollars.A McDonald is North and South.",
+Bank_West = Room("Bank West", "You are at bank west. You took out 40 dollars. On your way there, "
+                              "you saw two McDonald's.",
                  'North_McDonald', 'South_McDonald', None, None, None)
 Bank_South = Room("Bank South", "You took out 10 dollars in your bank. A east KFC leads east.",
                   None, None, 'East_KFC', None, None)
-North_McDonald = Room("North McDonald", "They riped you off. The meal was 10 dollars. A street lead east."
-                                        "You have 30 dollars now and ate 5 types of food.", None, None, 'Forest',
-                      None, 'Water')
-Forest = Room("Forest", "You are now in the forest. There is no one around you and your confused on where to go. "
-                        "You see two ways into the light but there's is only one ways out. North or East.", 'Ghost',
+North_McDonald = Room("North McDonald", "They ripped you off. The meal was 10 dollars. A street leads to east."
+                                        " You have 30 dollars now and ate 5 types of food.", None, None, 'Forest',
+                      None, Water)
+Forest = Room("Forest", "You are now in the forest. There is no one around you and you're confused on where to go. "
+                        "You see two ways into the light but there's is only one way out and the other is death."
+                        " North or East???", 'Ghost',
               None, 'People', None, None)
-South_McDonald = Room("South McDonald", "You order your food. It cost 5 dollars. You still need to east but now you"
-                                        "already ate 5 food and asked for water to help you on your way east",
-                      None, None, 'South_KFC', None, 'Water')
-Ghost = Room("Ghost", "The ghost is wearing a white dress with blood all over its dress. It scared you to death. Sadly,"
-                      " You Have Died.", None, None, None, None, None)
+South_McDonald = Room("South McDonald", "You order your food. It costs 5 dollars. After from all that "
+                                        "eating your still very hungry. Now you"
+                                        " already ate 5 types of food and also asked for water to help you on your way"
+                                        " to the next Fast Food stores.",
+                                        None, None, 'South_KFC', None, Water)
+Ghost = Room("Ghost", "The ghost is wearing a white dress with lots and lots of blood all over it's dress. "
+                      "She have a long black hair and she looked at you with her long tongue out with her neck turned."
+                      "It scared you to death. Sadly,"
+                      " You Have Died!!!!!!!!!!", None, None, None, None, None)
 People = Room("People", "You see people. You asked for help. "
                         "They told you to go south and gave you a golden watch to help you the way to food max. "
                         "The golden watch can tell time and give directions.", None,
-              'Food_Max', None, None, 'Golden Watch')
-South_KFC = Room("South KFC", "You ate some KFC. You wasted a 5 dollars meal and now you have ate 6 foods."
-                              " A In N Out is north.", 'In_N_Out', None, None, None, None)
+              'Food_Max', None, None, GoldenWatch)
+South_KFC = Room("South KFC", "You ate some KFC. You wasted a 5 dollar meal and now you have ate 6 types of foods."
+                              "", 'In_N_Out', None, None, None, None)
 Food_Max = Room("Food Max", "You have wasted 20 dollars on drinks. Now you only have 10 dollars but your still hungry."
-                            " A east KFC is east or you can go to your friends house south."
-                            "", None, 'Friends_House', 'East_KfC', None, 'Food')
-In_N_Out = Room("In N Out", "You bought a 5 dollars meal. Your still hungry. Go north.", 'Starbucks', None, None,
+                            " You can go to the east KFC or your friends house. You choose."
+                            "", None, 'Friends_House', 'East_KFC', None, Food)
+In_N_Out = Room("In N Out", "You bought a 5 dollar meal. The 5 dollar meal was a burger and fries with a drink. "
+                            "After eating that big burger and fries your still hungry. Go north.", 'Starbucks',
+                None, None,
                 None, None)
-Starbucks = Room("Starbucks", "Finally, You got full. Go West to House.", None, None, None, 'Back_To_House', None)
+Starbucks = Room("Starbucks", "Finally, your at starbucks and you got a vanilla bean frappuccino and it tasted amazing."
+                              "But!!!!!! Guess What!! Your full now. You can go home."
+                              " Go West to House.", None, None, None, 'Back_To_House', None)
 East_KFC = Room("East KFC", "You bought a food for 10 dollars. "
-                            "You have no more money to go home. You Lost!!!!!!!", None, None, None, None, None)
-Friends_House = Room("Friends House", "Your friend bought a pizza. He told chu to eat. Now you got full and it's time"
+                            "You have no more money to go home or anywhere else and the banks are too "
+                            "far for you to go to. "
+                            "You Lost!!!!!!! Thanks!! For!! Playing!!", None, None, None,
+                None, None)
+Friends_House = Room("Friends House", "Your friend bought a lot of pizza and lots of soda. "
+                                      "He told you to eat the pizza with him. "
+                                      "Now you got full and your able to save 10 dollars. It's time"
                                       " for you to go home and rest. Go West to your house.", None, None, None,
                      'Back_To_House', None)
-Back_To_House = Room("Back To House", "You are home now, rest up and thanks for playing.", None, None, None, None, None)
+Back_To_House = Room("Back To House", "You are home now, rest up and THANK YOU!!!!!!! COME AGAIN!!!!", None,
+                     None, None, None, None)
 
 current_node = House
 directions = ['north', 'south', 'east', 'west']
@@ -252,5 +285,38 @@ while True:
             current_node.move(command)
         except KeyError:
             print("You cannot go this way")
-    else:
-        print('Command Not Recognized')
+    if command == 'inv':
+        print(Guy.inventory)
+
+    if current_node == Back_To_House:
+        print(Back_To_House.name)
+        print(Back_To_House.description)
+        exit(0)
+
+    if current_node == Ghost:
+        print(Ghost.name)
+        print(Ghost.description)
+        exit(0)
+
+    if current_node == East_KFC:
+        print(East_KFC.name)
+        print(East_KFC.description)
+        exit(0)
+
+    elif command == 'Take clothing':
+        if current_node.Clothing is not None:
+            Guy.add_Clothing(current_node.Clothing)
+            current_node.Clothing = None
+        else:
+            print("There is no clothing here")
+    elif command == 'Take':
+        Item.name = input('Take what?')
+        found = False
+        if current_node.Item is not None:
+            for item in current_node.Item:
+                if Item == Item.name:
+                    print("Taken")
+                    Guy.inventory.append(item)
+                    found = True
+        if not found:
+            print("It isn't here")
